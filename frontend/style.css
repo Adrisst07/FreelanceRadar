@@ -1,0 +1,167 @@
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.container-fluid {
+    padding: 1rem !important;
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        padding: 2rem !important;
+    }
+}
+
+.form-control, .form-select {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.vaga-card {
+    background: white;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.vaga-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+}
+
+.vaga-titulo {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.vaga-plataforma {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.vaga-preco {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+.vaga-descricao {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    flex-grow: 1;
+}
+
+.vaga-data {
+    color: #999;
+    font-size: 0.85rem;
+    border-top: 1px solid #eee;
+    padding-top: 0.75rem;
+}
+
+.carregando, .sem-resultados {
+    text-align: center;
+    color: #999;
+    padding: 3rem 1rem;
+    font-size: 1rem;
+}
+
+.spinner-border-sm {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+@media (min-width: 576px) {
+    .vaga-card {
+        padding: 1.25rem;
+    }
+    
+    .vaga-titulo {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .vaga-card {
+        padding: 1.5rem;
+    }
+    
+    .vaga-titulo {
+        font-size: 1.3rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vaga-card {
+    animation: fadeIn 0.3s ease;
+}
