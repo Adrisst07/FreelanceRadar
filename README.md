@@ -59,7 +59,7 @@ FreelanceRadar/
 ├── requirements.txt        # Dependências Python
 ├── .gitignore             # Arquivos ignorados pelo Git
 └── README.md              # Este arquivo
-📡 Endpoints da API
+Endpoints da API
 GET /
 Retorna a página principal (index.html)
 GET /api/vagas
