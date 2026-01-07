@@ -38,9 +38,9 @@ def status():
     })
 
 if __name__ == '__main__':
-    print('🚀 Iniciando FreelanceRadar...')
-    print('📍 Acessar em: http://localhost:5000')
-    print('⏰ Scraper rodará a cada 1 hora automaticamente')
+    print(' Iniciando FreelanceRadar...')
+    print(' Acessar em: http://localhost:5000')
+    print(' Scraper rodará a cada 1 hora automaticamente')
     
     atualizar_vagas()
     app.run(debug=True, port=5000)
