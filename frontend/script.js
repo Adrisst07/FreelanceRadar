@@ -44,7 +44,7 @@ function exibirVagas(vagas) {
                 <h5 class="vaga-titulo">${vaga.titulo}</h5>
                 <p class="vaga-preco">${vaga.preco}</p>
                 <p class="vaga-descricao">${vaga.descricao}</p>
-                <p class="vaga-data">📅 ${formatarData(vaga.data)}</p>
+                <p class="vaga-data"> ${formatarData(vaga.data)}</p>
             </div>
         </div>
     `).join('');
