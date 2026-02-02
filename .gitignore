@@ -36,3 +36,7 @@ node_modules/
 *.swo
 *~
 .idea/
+
+*.db-journal
+.pytest_cache/
+.coverage
