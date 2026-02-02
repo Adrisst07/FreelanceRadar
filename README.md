@@ -1,120 +1,223 @@
- FreelanceRadar
-Um agregador inteligente de vagas de freelancer que coleta automaticamente oportunidades de múltiplas plataformas e as organiza em um dashboard responsivo e intuitivo.
- Funcionalidades
+FreelanceRadar
 
- Dashboard responsivo (mobile first)
- Busca e filtros em tempo real
- Coleta automática de vagas a cada hora
- Persistência de dados com SQLite
- API REST para consulta de vagas
- Design totalmente responsivo com Bootstrap 5
- Automação backend com APScheduler
+Um agregador inteligente de vagas freelancer com coleta automática e dashboard responsivo.
 
- Tecnologias Utilizadas
+
+✅ Dashboard responsivo - Funciona em mobile, tablet e desktop
+✅ Filtros em tempo real - Busque por título, descrição ou plataforma
+✅ 11+ vagas disponíveis - Dados realistas de Upwork, Workana e Fiverr
+✅ API REST estruturada - Fácil de integrar com outros projetos
+✅ Coleta automática - Atualização a cada 1 hora via APScheduler
+✅ Persistência de dados - SQLite para armazenar vagas
+✅ Design moderno - Bootstrap 5 com animações suaves
+✅ Sem frameworks pesados - JavaScript vanilla no frontend
+
+🛠️ Tecnologias
 Backend
-
-Flask - Framework web Python
-Flask-CORS - Habilitação de CORS
-APScheduler - Agendamento de tarefas automáticas
-SQLite - Banco de dados leve e embarcado
-
+Python 3.8+
+Flask 2.3.3 - Web framework
+APScheduler 3.10.4 - Agendamento automático
+SQLite - Banco de dados leve
 Frontend
-
 HTML5 - Estrutura semântica
 CSS3 - Estilos responsivos
-JavaScript Vanilla - Lógica do cliente
-Bootstrap 5 - Framework CSS mobile first
+JavaScript Vanilla - Sem dependências desnecessárias
+Bootstrap 5 - Framework CSS moderno
+ Como Funciona
 
- Pré-requisitos
+Scraper coleta vagas das 3 plataformas a cada 1 hora
+Backend armazena no banco SQLite
+Frontend exibe em dashboard responsivo
+Usuário filtra por plataforma ou busca em tempo real
 
-Python 3.8+
-pip (gerenciador de pacotes Python)
+Scraper → Banco de Dados → API REST → Frontend
+ Como Usar
+Pré-requisitos
+
+Python 3.8 ou superior
+pip (gerenciador de pacotes)
 Navegador moderno
 
- Instalação e Execução
-1. Clonar o repositório
-bashgit clone https://github.com/seu-usuario/FreelanceRadar.git
+Instalação Rápida
+bash# 1. Clone o repositório
+git clone https://github.com/seu-usuario/FreelanceRadar.git
 cd FreelanceRadar
-2. Criar ambiente virtual
-bashpython -m venv venv
+
+# 2. Crie ambiente virtual
+python -m venv venv
+source venv/bin/activate  # Mac/Linux
+# ou
 venv\Scripts\activate  # Windows
-source venv/bin/activate  # macOS/Linux
-3. Instalar dependências
-bashpip install -r requirements.txt
-4. Executar a aplicação
-bashcd backend
+
+# 3. Instale as dependências
+pip install -r requirements.txt
+
+# 4. Execute a aplicação
+cd backend
 python app.py
-A aplicação estará disponível em: http://localhost:5000
- Estrutura do Projeto
-FreelanceRadar/
-├── backend/
-│   ├── app.py              # Aplicação Flask principal
-│   ├── database.py         # Gerenciamento do banco de dados
-│   ├── scraper.py          # Lógica de coleta de vagas
-│   └── vagas.db            # Banco de dados SQLite
-├── frontend/
-│   ├── index.html          # Página principal
-│   ├── style.css           # Estilos responsivos
-│   └── script.js           # Lógica frontend
-├── requirements.txt        # Dependências Python
-├── .gitignore             # Arquivos ignorados pelo Git
-└── README.md              # Este arquivo
-Endpoints da API
-GET /
-Retorna a página principal (index.html)
+Acesse no navegador
+http://localhost:5000
+ API - Endpoints
 GET /api/vagas
-Retorna todas as vagas em formato JSON
-json[
-  {
-    "id": 1,
-    "titulo": "Desenvolvedor Python",
-    "plataforma": "Upwork",
-    "preco": "R$ 80-150/h",
-    "descricao": "Projeto de automação com Python",
-    "data": "2026-01-07"
-  }
-]
-GET /api/status
-Retorna o status da aplicação
+Retorna todas as vagas com paginação
+Parâmetros:
+
+page (int): Número da página (padrão: 1)
+per_page (int): Vagas por página (padrão: 20)
+
+Resposta:
 json{
+  "sucesso": true,
+  "total": 11,
+  "pagina": 1,
+  "vagas": [
+    {
+      "id": 1,
+      "titulo": "Desenvolvedor Python Senior",
+      "plataforma": "Upwork",
+      "preco": "R$ 80-150/h",
+      "descricao": "Procuramos desenvolvedor experiente para projeto de automação...",
+      "data": "2026-02-01",
+      "habilidades": "Python, Flask, PostgreSQL"
+    }
+  ]
+}
+GET /api/vagas/<id>
+Retorna detalhes de uma vaga específica
+GET /api/status
+Status da aplicação
+Resposta:
+json{
+  "sucesso": true,
   "status": "online",
-  "total_vagas": 12,
+  "total_vagas": 11,
+  "versao": "1.0.0",
   "mensagem": "FreelanceRadar rodando com sucesso"
 }
- Automação
-O sistema coleta automaticamente novas vagas a cada 1 hora. O scraper simula a coleta de vagas de três plataformas:
+📁 Estrutura do Projeto
+FreelanceRadar/
+├── backend/
+│   ├── app.py                 # Aplicação Flask principal
+│   ├── database.py            # Gerenciamento do SQLite
+│   ├── scraper.py             # Coleta de vagas
+│   ├── vagas.db               # Banco de dados
+│   └── *.backup               # Backups dos arquivos originais
+│
+├── frontend/
+│   ├── index.html             # Página principal
+│   ├── style.css              # Estilos responsivos
+│   └── script.js              # Lógica do frontend
+│
+├── requirements.txt           # Dependências Python
+├── .gitignore                 # Arquivos ignorados pelo Git
+└── README.md                  # Este arquivo
+ Funcionalidades Detalhadas
+Dashboard
 
-Upwork
-Workana
-Fiverr
+Lista dinâmica de vagas
+Cards informativos com:
 
-Os dados são armazenados em um banco SQLite e servidos através da API REST.
-Características do Frontend
+Título e plataforma
+Faixa salarial
+Descrição completa
+Habilidades necessárias
+Data da publicação
 
-Mobile First: Desenvolvido primeiramente para dispositivos móveis
-Responsivo: Funciona perfeitamente em tablets e desktops
-Filtros Dinâmicos: Busca e filtro por plataforma em tempo real
-Animações Suaves: Transições e hover effects
-Bootstrap 5: Framework CSS moderno e profissional
 
- Melhorias Futuras
 
- Integração com APIs reais de plataformas
+Filtros
+
+Busca em tempo real - Filtra por título ou descrição
+Filtro por plataforma - Upwork, Workana, Fiverr
+Limpar filtros - Volta à exibição completa
+
+Automação
+
+Scraper roda automaticamente a cada 1 hora
+Verifica duplicatas antes de inserir
+Mantém histórico de vagas
+Log de operações
+
+ Dados das Vagas
+Cada vaga contém:
+
+Título - Nome da vaga
+Plataforma - Upwork, Workana ou Fiverr
+Preço - Faixa salarial em R$/h
+Descrição - Detalhes da vaga
+Habilidades - Tags das skills necessárias
+Data - Quando foi publicada
+
+Exemplo de Vaga
+json{
+  "titulo": "Desenvolvedor Python Senior",
+  "plataforma": "Upwork",
+  "preco": "R$ 80-150/h",
+  "descricao": "Procuramos desenvolvedor experiente para projeto de automação...",
+  "habilidades": "Python, Flask, PostgreSQL",
+  "data": "2026-02-01"
+}
+ O que Aprendi
+Este projeto demonstra proficiência em:
+✅ Full Stack Development
+
+Backend robusto com Flask
+Frontend responsivo e moderno
+Integração completa frontend-backend
+
+✅ Automação
+
+Agendamento de tarefas com APScheduler
+Coleta simulada realista de dados
+
+✅ Boas Práticas
+
+Separação clara de responsabilidades
+Código modular e reutilizável
+Tratamento de erros robusto
+Versionamento com Git
+
+✅ Responsividade
+
+Design mobile-first
+Testes em múltiplos dispositivos
+CSS moderno e eficiente
+
+✅ Segurança
+
+.gitignore adequado
+Sem dados sensíveis no repositório
+Debug desativado em produção
+
+ Próximos Passos / Melhorias Futuras
+
+ Integração com APIs reais das plataformas
  Sistema de autenticação de usuários
- Favoritar vagas
+ Favoritar e salvar vagas
  Notificações por email
- Gráficos de análise de vagas
- Deploy em produção (Heroku, PythonAnywhere, etc)
+ Gráficos de análise (vagas por plataforma, tendências)
+ Dark mode
+ Deploy em produção (Heroku, Railway, Render)
+ Testes automatizados
+ Documentação API (Swagger)
 
  Licença
 Este projeto está sob a licença MIT. Você é livre para usar, modificar e distribuir.
- Autor
-Desenvolvido como projeto de portfólio para demonstrar habilidades em:
+Veja o arquivo LICENSE para mais detalhes.
+
 
 Desenvolvimento Full Stack
-Automação Backend
+Automação com Python
 Design Responsivo
+Boas práticas de desenvolvimento
 Versionamento com Git
 
 
-Desenvolvido  usando Python e JavaScript
+
+
+Faça um fork do projeto
+Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
+Commit suas mudanças (git commit -m 'Add some AmazingFeature')
+Faça push para a branch (git push origin feature/AmazingFeature)
+Abra um Pull Request
+
